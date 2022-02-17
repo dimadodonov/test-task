@@ -10,7 +10,7 @@
 					<a href="/">Главная</a>
 					<span class="breadcrumb-separator"> > </span>
 					<a href="buildings.html">Новостройки</a><span class="breadcrumb-separator"> > </span> 
-					Расцветай на Маркса
+					<?php echo get_the_title(); ?>
 				</nav>
 
 			</div>
@@ -23,9 +23,10 @@
 
 	<div class="post-header">
 
-		<h1 class="page-title-h1">Расцветай на Маркса</h1>
+		<?php the_title('<h1 class="page-title-h1">', '</h1>'); ?>
 
-		<span>ОАО Брусника</span>
+		<?php $developer = get_field('developer');
+			if($developer) : ?><span><?php echo $developer; ?></span><?php endif;?>
 
 		<div class="post-header__details">
 

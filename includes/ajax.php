@@ -44,18 +44,59 @@ function misha_filter_function(){
 	
 	$params = array(
 	    'post_type'	=> 'buildings',
-		'posts_per_page' => $_POST['misha_number_of_results'], // when set to -1, it shows all posts
-		'orderby' => $order[0], // example: date
-		'order'	=> $order[1] // example: ASC
+		'meta_query' => array()
 	);
 
-	// // create $args['meta_query'] array if one of the following fields is filled
-	// if( isset( $_POST['service'] ) && $_POST['service'] )
-	// 	$args['meta_query'] = array( 'relation'=>'AND' ); // AND means that all conditions of meta_query should be true
+	// create $args['meta_query'] array if one of the following fields is filled
+	if( isset( $_POST['<10'] ) && $_POST['<10'] == 'on' || isset( $_POST['10-20'] ) && $_POST['10-20'] == 'on'|| isset( $_POST['20-40'] ) && $_POST['20-40'] == 'on'|| isset( $_POST['40+'] ) && $_POST['40+'] == 'on')
+		$params['meta_query'] = array( 'relation' => 'AND' ); // AND means that all conditions of meta_query should be true
 
-    // для таксономий
-	if( isset( $_POST['service'] )) :
-		$params['meta_query'] = array(
+	if( isset( $_POST['<10'] ) ) :
+		$params['meta_query'][] = array(
+			array(
+				'key' => 'metro',
+				'value' => 10,
+				'type' => 'numeric', // specify it for numeric values
+				'compare' => '<='
+			)
+		);
+	endif;
+
+	if( isset( $_POST['10-20'] ) ) :
+		$params['meta_query'][] = array(
+			array(
+				'key' => 'metro',
+				'value' => array( 10, 20 ),
+				'type' => 'numeric',
+				'compare' => 'BETWEEN'
+			)
+		);
+	endif;
+
+	if( isset( $_POST['20-40'] ) ) :
+		$params['meta_query'][] = array(
+			array(
+				'key' => 'metro',
+				'value' => array( 20, 40 ),
+				'type' => 'numeric',
+				'compare' => 'BETWEEN'
+			)
+		);
+	endif;
+
+	if( isset( $_POST['40+'] ) ) :
+		$params['meta_query'][] = array(
+			array(
+				'key' => 'metro',
+				'value' => 40,
+				'type' => 'numeric', // specify it for numeric values
+				'compare' => '>='
+			)
+		);
+	endif;
+
+	if( isset( $_POST['service'] ) ) :
+		$params['meta_query'][] = array(
 			array(
                 'key'     => 'services',
                 'value'   => '1',
@@ -76,7 +117,7 @@ function misha_filter_function(){
  
 			// adapted for Twenty Seventeen theme
 			get_template_part( 'template-parts/content/content', 'archive' );
- 
+
 		endwhile;
  
  		$posts_html = ob_get_contents(); // we pass the posts to variable
