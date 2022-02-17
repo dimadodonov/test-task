@@ -1,33 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php get_header(); ?>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="robots" content="noindex">
-	<title>Metro City | Новостройки</title>
-
-	<!-- <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css"> -->
-	<script src="https://api-maps.yandex.ru/2.1/?apikey=f7f5866c-fcab-4da8-94d7-cdbdb39c7d22&lang=ru_RU"></script>
-	<link rel="stylesheet" href="fonts/icomoon/icon-font.css">
-	<link rel="stylesheet" href="css/style.min.css" />
-</head>
-
-<body>
-
-	<main class="main">
+<main class="main">
 
 		<div class="container">
 
 			<div class="page-top">
 
 				<nav class="page-breadcrumb" itemprop="breadcrumb">
-	<a href="/">Главная</a>
-	<span class="breadcrumb-separator"> > </span>
-	 <a href="buildings.html">Новостройки</a><span class="breadcrumb-separator"> > </span> 
-	Расцветай на Маркса
-</nav>
+					<a href="/">Главная</a>
+					<span class="breadcrumb-separator"> > </span>
+					<a href="buildings.html">Новостройки</a><span class="breadcrumb-separator"> > </span> 
+					Расцветай на Маркса
+				</nav>
 
 			</div>
 
@@ -175,11 +159,4 @@
 
 	</main>
 
-	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-	<script src="libs/bootstrap/js/popper.min.js"></script>
-	<script src="libs/bootstrap/js/bootstrap.min.js"></script>
-	<script src="libs/ofi/ofi.min.js"></script>
-	<script src="js/scripts.js"></script>
-</body>
-
-</html>
+<?php get_footer();
